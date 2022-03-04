@@ -9,7 +9,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const demoUser = e => {
+  const demoUser = (e) => {
     setCredential("Mr.DemoMan");
     setPassword("password");
     handleSubmit()
