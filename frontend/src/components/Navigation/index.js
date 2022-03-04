@@ -27,6 +27,8 @@ function Navigation({ isLoaded }){
       <li className='bar'>
         <button><NavLink exact to="/">Home</NavLink></button>
         {isLoaded && sessionLinks}
+        <button><NavLink to='/places'>Tree Houses</NavLink></button>
+
       </li>
     </ul>
   );
