@@ -1,0 +1,10 @@
+.signupform {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1.25vw;
+    justify-content: center;
+    align-items: space-between;
+    width: 13.5vw;
+    height: 50vh;
+
+}
