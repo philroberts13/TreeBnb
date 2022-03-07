@@ -23,6 +23,14 @@ router.get('/:id', asyncHandler(async function(req, res) {
     return res.json(place)
 }));
 
+router.put('/edit/:id',asyncHandler(async function (req, res) {
+    const { id, name, address, city, state, country, price } = req.body;
+    await Place.update({ id, name, address, city, state, country, price }, {where: {id: req.params.id} })
+    const place = await Place.findByPk(req.params.id)
+    return res.json(place);
+    })
+);
+
 
   router.delete('/:id',
     asyncHandler(async (req, res) => {

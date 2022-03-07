@@ -8,6 +8,7 @@ import SplashPage from "./components/SplashPage";
 import PlacesPage from "./components/PlacesPage";
 import CreatePlaceForm from "./components/CreatePlaceForm";
 import PlaceDetailPage from "./components/PlaceDetailPage";
+import EditPlacePage from "./components/EditPlaceForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path='/places/:placeId'>
             <PlaceDetailPage />
+          </Route>
+          <Route exact path='/places/edit/:placeId'>
+            <EditPlacePage />
           </Route>
         </Switch>
       )}

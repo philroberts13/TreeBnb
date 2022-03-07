@@ -31,7 +31,7 @@ function PlaceDetailPage() {
       hostLinks = (
         <>
         <button onClick={removePlace}><NavLink style={{textDecoration: 'none'}} to="/places">Delete</NavLink></button>
-        <button><NavLink style={{textDecoration: 'none'}} to={'/places/edit'}>Edit</NavLink></button>
+        <button><NavLink style={{textDecoration: 'none'}} to={`/places/edit/${placeId}`}>Edit</NavLink></button>
         </>
       );
     }

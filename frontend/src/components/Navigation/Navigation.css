@@ -32,10 +32,11 @@
 
 
   button {
-      background-color: green;
+      background-color: rgb(11, 168, 11);
       font-family:Arial, Helvetica, sans-serif;
       border-radius: 20px;
       text-decoration: none;
       color: black;
+      padding: 5px;
 
   }

@@ -4,6 +4,7 @@ const LOAD_PLACES = 'places/LOAD_PLACES';
 const ADD_PLACE = 'places/ADD_PLACE'
 const LOAD_PLACE = 'places/LOAD_PLACE'
 const REMOVE_PLACE = 'places/REMOVE_PLACE'
+const UPDATE_PLACE = 'places/UPDATE_PLACE'
 
 const loadPlaces = list => ({
     type: LOAD_PLACES,
@@ -23,6 +24,11 @@ const loadPlace = list => ({
 const removePlace = (placeId) => ({
     type: REMOVE_PLACE,
     placeId
+})
+
+const updatePlace = (place) => ({
+    type: UPDATE_PLACE,
+    place
 })
 
 export const getPlaceList = () => async dispatch => {
@@ -53,6 +59,20 @@ export const createPlace = (payload) => async dispatch => {
         const newPlace = await response.json()
         dispatch(addPlace(newPlace))
         return newPlace
+    }
+    return response;
+}
+
+export const editPlace = (place) => async (dispatch) => {
+    const response = await csrfFetch(`/api/places/edit/${place.id}`, {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(place)
+    })
+    if(response.ok) {
+        const updatedPlace = await response.json()
+        dispatch(updatePlace(updatedPlace))
+        return updatedPlace;
     }
     return response;
 }
@@ -102,6 +122,11 @@ const placesReducer = (state = initialState, action) => {
             delete newState[action.placeId];
             return newState;
         }
+        case UPDATE_PLACE: {
+            const newState = {...state, [action.place.id]: action.place};
+            return newState;
+        }
+
         default: return state;
     }
 
