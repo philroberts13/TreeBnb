@@ -11,23 +11,27 @@ router.get('/', asyncHandler(async function(req, res) {
     return res.json(places);
   }));
 
+router.post('/form', asyncHandler(async function (req, res) {
+    const place = await Place.create(req.body);
+    return res.json(place);
+  }));
 
-// router.get('/:id', asyncHandler(async function(req, res) {
-//   const place = await Place.findByPk(req.params.id);
-//   return res.json(place);
-//   }));
+router.get('/:id', asyncHandler(async function(req, res) {
+    const place = await Place.findByPK(req.params.id, {
+
+    })
+    return res.json(place)
+}));
 
 
-
-//   router.delete(
-//     '/:id',
-//     asyncHandler(async (req, res) => {
-//         const { id } = req.params;
-//         const place = await Place.findByPk(id);
-//         await place.destroy();
-//         return res.json({ message: 'success' });
-//     })
-// );
+  router.delete('/:id',
+    asyncHandler(async (req, res) => {
+        const { id } = req.params;
+        const place = await Place.findByPk(id);
+        await place.destroy();
+        return res.json({ message: 'success' });
+    })
+);
 
 // router.delete(
 //   '/editReviewForm/id/:id',

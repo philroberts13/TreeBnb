@@ -1,10 +1,8 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
-} */
-
+}
+/*
 * {
     display:flex;
     justify-content: center;
@@ -15,7 +13,7 @@
     min-height: 100vh;
     overflow: scroll;
     padding-top: 1.6vh;
-}
+} */
 
 .logo {
    position: absolute;
@@ -24,8 +22,10 @@
 }
 
 .treehouse {
-    position: relative;
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 100px;
+    border: 40px black solid;
+
 }
