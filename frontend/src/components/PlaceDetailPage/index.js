@@ -22,9 +22,9 @@ function PlaceDetailPage() {
 
     const sessionUser = useSelector(state => state.session.user);
 
-    useEffect(() => {
-        dispatch(getPlaceList(user?.id))
-    }, [dispatch]);
+    useEffect( async () => {
+        await dispatch(getPlaceById(placeId))
+    }, [dispatch, placeId]);
 
     let hostLinks;
     if (sessionUser?.id === place.userId) {

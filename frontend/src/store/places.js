@@ -88,10 +88,12 @@ export const deletePlace = (placeId) => async (dispatch) => {
 }
 
 let initialState = {
-    list: [],
+    list: {},
 };
 
 const placesReducer = (state = initialState, action) => {
+    let newState;
+    let list;
     switch(action.type) {
         case LOAD_PLACES:
             const allPlaces = {}
@@ -102,6 +104,13 @@ const placesReducer = (state = initialState, action) => {
                 ...allPlaces,
                 ...state
             }
+        case LOAD_PLACE:
+            newState = {...state}
+            list = {};
+            list[action.list.id] = action.list;
+            newState.list = list;
+            return newState;
+
         case ADD_PLACE:
             if (!state[action.place.id]) {
                 const newState = {
@@ -117,6 +126,7 @@ const placesReducer = (state = initialState, action) => {
                     ...state.place
                 }
             }
+
         case REMOVE_PLACE: {
             const newState = {...state};
             delete newState[action.placeId];
