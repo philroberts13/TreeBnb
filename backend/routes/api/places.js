@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Place } = require('../../db/models');
-// const { Review } = require('../../db/models');
+const { Review } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async function(req, res) {
@@ -17,11 +17,17 @@ router.post('/form', asyncHandler(async function (req, res) {
   }));
 
 router.get('/:id', asyncHandler(async function(req, res) {
-    const place = await Place.findByPK(req.params.id, {
+    const place = await Place.findByPk(req.params.id, {
+      include: Review,
+      where: {
+          placeId: req.params.placeId
+    }
 
     })
     return res.json(place)
 }));
+
+
 
 router.put('/edit/:id',asyncHandler(async function (req, res) {
     const { id, name, address, city, state, country, price } = req.body;
@@ -40,6 +46,14 @@ router.put('/edit/:id',asyncHandler(async function (req, res) {
         return res.json({ message: 'success' });
     })
 );
+
+// router.get('/:placeId', asyncHandler(async function (req, res) {
+//   const reviews = await Review.findAll({
+//       where: {
+//           placeId: req.params.placeId
+//   }});
+//   res.json(reviews)
+// }));
 
 // router.delete(
 //   '/editReviewForm/id/:id',

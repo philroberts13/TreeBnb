@@ -14,6 +14,9 @@ function PlaceDetailPage() {
     const { placeId } = useParams();
     const user = useSelector((state) => state.session.user);
     const place = useSelector(state => (state.places[placeId]));
+    const reviews = useSelector(state => (state.reviews))
+
+    console.log(reviews)
 
     const removePlace = async (e) => {
         await dispatch(deletePlace(placeId));
@@ -27,7 +30,7 @@ function PlaceDetailPage() {
     }, [dispatch, placeId]);
 
     let hostLinks;
-    if (sessionUser?.id === place.userId) {
+    if (sessionUser?.id === place?.userId) {
       hostLinks = (
         <>
         <button onClick={removePlace}><NavLink style={{textDecoration: 'none'}} to="/places">Delete</NavLink></button>
@@ -46,7 +49,9 @@ function PlaceDetailPage() {
             {place.city}, {place.state}
             </ul>
             <ul>Per Night:  ${place.price}</ul>
+            <h2>Reviews</h2>
             {hostLinks}
+
 
         </div>
     )
@@ -55,16 +60,18 @@ function PlaceDetailPage() {
 export default PlaceDetailPage;
 
 
-            // <button onClick={removePlace}>Delete</button>
-            // <h2>Reviews</h2>
-            // {place?.Reviews?.map(review => (
-            //     <NavLink to={`/editReviewForm/${place.id}/${review.id}`}>
-            //     <li key={review.id}>{review.content}
-            //     {/* <button onClick={removeReview(review.id)}>Delete</button> */}
-            //     </li>
-            //     </NavLink>
+// <button onClick={removePlace}>Delete</button>
 
-            // ))}
+
+
+// {place?.Reviews?.map(review => (
+//     <NavLink to={`/editReviewForm/${place.id}/${review.id}`}>
+//     <li key={review.id}>{review.content}
+//     {/* <button onClick={removeReview(review.id)}>Delete</button> */}
+//     </li>
+//     </NavLink>
+
+// ))}
             // <NavLink to={`/reviews/places/${place.id}`}>
             // <button>Review</button>
             // </NavLink>

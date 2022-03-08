@@ -1,0 +1,24 @@
+ {
+      userId: 3,
+      placeId: 1,
+      review_body: 'too many leaves but everything else was fun'
+
+    },
+    {
+      userId: 3,
+      placeId: 3,
+      review_body: 'This tree is great but I really dislike Texas'
+
+    },
+    {
+      userId: 3,
+      placeId: 4,
+      review_body: 'the dog is not included with the tree house, not happy'
+
+    },
+    {
+      userId: 1,
+      placeId: 6,
+      review_body: 'Idk why this is named happy tree, way too much moss'
+
+    },
