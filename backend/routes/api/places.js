@@ -7,7 +7,9 @@ const { Review } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async function(req, res) {
-    const places = await Place.findAll();
+    const places = await Place.findAll({
+      include: Review,
+    });
     return res.json(places);
   }));
 
@@ -17,15 +19,14 @@ router.post('/form', asyncHandler(async function (req, res) {
   }));
 
 router.get('/:id', asyncHandler(async function(req, res) {
-    const place = await Place.findByPk(req.params.id, {
-      include: Review,
-      where: {
-          placeId: req.params.placeId
-    }
-
-    })
-    return res.json(place)
+    const place = await Place.findByPk(req.params.id)
+    return res.json(place);
 }));
+
+// router.get('/:id', asyncHandler(async function (req, res) {
+//   const reviews = await Review.findAll();
+//   return res.json(reviews)
+// }));
 
 
 

@@ -8,6 +8,6 @@ const reviewsRouter = require('./reviews.js');
 router.use('/session', sessionRouter);
 router.use('/places', placesRouter);
 router.use('/users', usersRouter);
-router.use('./reviews', reviewsRouter);
+router.use('/reviews', reviewsRouter);
 
 module.exports = router;

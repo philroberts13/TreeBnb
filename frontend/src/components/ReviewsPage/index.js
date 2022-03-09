@@ -1,36 +1,57 @@
-import React, { useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { getReviews } from "../../store/reviews";
-// import { getReviews } from "../../store/reviews";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from "react-redux"
+import {createReview} from '../../store/reviews';
+// import './createPlace.css';
 
 
 function ReviewsPage() {
     const dispatch = useDispatch();
-    // const place = useSelector(state => (state.places[placeId]));
+    const history = useHistory();
+    const {placeId} = useParams();
+    const user = useSelector((state) => state.session.user);
+    const userId = user.id
+
+    const [review_body, setReview] = useState("");
 
 
-    const reviews = useSelector(state => {
-        return Object.values(state.reviews);
-      });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-      console.log(reviews)
+        const newReview = {
+            userId,
+            placeId,
+            review_body
 
-      useEffect(() => {
-        dispatch(getReviews())
-      }, [dispatch]);
-
-
+        };
 
 
-      if(!reviews) return null;
+    dispatch(createReview(newReview));
+
+
+    history.push(`/places/${placeId}`)
+
+    // await dispatch(getPlaceList(user?.id))
+
+      };
+      if (!user || !user.id) return null;
 
     return (
-        <div>
-            <h1>Reviews</h1>
-            <ul>
-            </ul>
-        </div>
+    <div>
+        <form className="createForm" onSubmit={handleSubmit}>
+        <label>
+        What did you think?
+        <input
+          type="text"
+          value={review_body}
+          onChange={(e) => setReview(e.target.value)}
+          required
+        />
+      </label>
+      <button type="submit">Add</button>
+      </form>
+    </div>
     )
 }
 

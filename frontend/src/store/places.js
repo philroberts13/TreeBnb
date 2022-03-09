@@ -5,6 +5,7 @@ const ADD_PLACE = 'places/ADD_PLACE'
 const LOAD_PLACE = 'places/LOAD_PLACE'
 const REMOVE_PLACE = 'places/REMOVE_PLACE'
 const UPDATE_PLACE = 'places/UPDATE_PLACE'
+const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 
 const loadPlaces = list => ({
     type: LOAD_PLACES,
@@ -16,9 +17,9 @@ const addPlace = (place) => ({
     place
 })
 
-const loadPlace = list => ({
+const loadPlace = (place) => ({
     type: LOAD_PLACE,
-    list
+    place
 })
 
 const removePlace = (placeId) => ({
@@ -30,6 +31,14 @@ const updatePlace = (place) => ({
     type: UPDATE_PLACE,
     place
 })
+
+export const loadAllReviews = (reviews) => {
+    return {
+        type: LOAD_REVIEWS,
+        reviews,
+
+    }
+};
 
 export const getPlaceList = () => async dispatch => {
     const response = await fetch('/api/places');
@@ -43,8 +52,9 @@ export const getPlaceList = () => async dispatch => {
 export const getPlaceById = (id) => async (dispatch) => {
     const response = await fetch(`/api/places/${id}`);
     if(response.ok) {
-        let list = await response.json();
-        dispatch(loadPlace(list));
+        let place = await response.json();
+
+        dispatch(loadPlace(place));
     }
     return response;
 }
@@ -87,13 +97,20 @@ export const deletePlace = (placeId) => async (dispatch) => {
     }
 }
 
-let initialState = {
-    list: {},
-};
+// export const getReviews = (placeId, reviews) => async dispatch => {
+//     const response = await fetch(`/api/places/${placeId}`);
+
+//     if(response.ok) {
+//         const reviews = await response.json();
+//         dispatch(loadAllReviews(placeId, reviews));
+
+//         }
+//     }
+
+let initialState = {};
 
 const placesReducer = (state = initialState, action) => {
     let newState;
-    let list;
     switch(action.type) {
         case LOAD_PLACES:
             const allPlaces = {}
@@ -106,9 +123,8 @@ const placesReducer = (state = initialState, action) => {
             }
         case LOAD_PLACE:
             newState = {...state}
-            list = {};
-            list[action.list.id] = action.list;
-            newState.list = list;
+            //newState.action.place = action.place
+            newState[action.place.id] = action.place;
             return newState;
 
         case ADD_PLACE:
@@ -136,6 +152,15 @@ const placesReducer = (state = initialState, action) => {
             const newState = {...state, [action.place.id]: action.place};
             return newState;
         }
+        case LOAD_REVIEWS:
+                let reviews = {};
+                action.reviews.forEach(review => {
+                    reviews[review.id] = review;
+                });
+                return {
+                    ...state,
+                    ...reviews
+                }
 
         default: return state;
     }

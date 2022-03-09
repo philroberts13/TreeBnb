@@ -20,20 +20,18 @@ function PlacesPage() {
       }, [dispatch]);
 
 
-
-
-      if(!places) return null;
+  let placeCards = places?.map(place => (
+                <ul key={place.id}>
+                <NavLink className={'link'} key={place.id} to={`/places/${place.id}`}>
+                <img key={place.id} src={place.imageUrl} className="image" alt=""/> {place.name}
+                </NavLink>
+                </ul>))
 
     return (
         <div>
             <h1>Tree Houses</h1>
             <ul>
-                {places?.map(place => (
-                <ul>
-                <NavLink className={'link'} key={place.id} to={`/places/${place.id}`}>
-                <img key={place.id} src={place.imageUrl} className="image" alt=""/> {place.name}
-                </NavLink>
-                </ul>))}
+                {placeCards}
             </ul>
         </div>
     )

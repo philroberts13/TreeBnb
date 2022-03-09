@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import { getPlaceById, getPlaceList } from "../../store/places";
-import { deletePlace } from "../../store/places";
+import { getPlaceById, deletePlace } from "../../store/places";
 import { useHistory } from "react-router-dom";
-// import { deleteReview } from "../../store/reviews";
+// import { getReviews } from "../../store/places";
 import "./Detail.css";
+import { getReivewsOfPlace } from "../../store/reviews";
 
 
 function PlaceDetailPage() {
@@ -14,22 +14,23 @@ function PlaceDetailPage() {
     const { placeId } = useParams();
     const user = useSelector((state) => state.session.user);
     const place = useSelector(state => (state.places[placeId]));
-    const reviews = useSelector(state => (state.reviews))
+    const sessionUser = useSelector(state => state.session.user);
+    const reviews = useSelector(state => {
+        return (state.reviews)
+    });
 
-    console.log(reviews)
+    useEffect(() => {
+        dispatch(getPlaceById(placeId))
+        dispatch(getReivewsOfPlace(placeId))
+    }, [dispatch, placeId]);
 
     const removePlace = async (e) => {
         await dispatch(deletePlace(placeId));
-        // dispatch(getPlaceList(place?.id));
+
     }
 
-    const sessionUser = useSelector(state => state.session.user);
-
-    useEffect( async () => {
-        await dispatch(getPlaceById(placeId))
-    }, [dispatch, placeId]);
-
     let hostLinks;
+
     if (sessionUser?.id === place?.userId) {
       hostLinks = (
         <>
@@ -39,18 +40,24 @@ function PlaceDetailPage() {
       );
     }
 
-    if(!place) return null;
+    let reviewList = Object.values(reviews)?.map(review => (
+        <li key={review.id}>
+        {review.review_body}
+        </li>))
+
     return (
         <div>
-            <h1>{place.name}</h1>
-            <img className="image" src={place.imageUrl} alt="" />
-            <ul>{place.address}</ul>
+            <h1>{place?.name}</h1>
+            <img className="image" src={place?.imageUrl} alt="" />
+            <ul>{place?.address}</ul>
             <ul>
-            {place.city}, {place.state}
+            {place?.city}, {place?.state}
             </ul>
-            <ul>Per Night:  ${place.price}</ul>
-            <h2>Reviews</h2>
+            <ul>Per Night:  ${place?.price}</ul>
             {hostLinks}
+            <h2>Reviews<button><NavLink style={{textDecoration: 'none'}} to={`/reviews/${placeId}`}>+</NavLink></button></h2>
+            {reviewList}
+
 
 
         </div>
@@ -60,18 +67,11 @@ function PlaceDetailPage() {
 export default PlaceDetailPage;
 
 
+{/* <button onClick={removeReview(review.id)}>Delete</button> */}
 // <button onClick={removePlace}>Delete</button>
 
 
 
-// {place?.Reviews?.map(review => (
-//     <NavLink to={`/editReviewForm/${place.id}/${review.id}`}>
-//     <li key={review.id}>{review.content}
-//     {/* <button onClick={removeReview(review.id)}>Delete</button> */}
-//     </li>
-//     </NavLink>
-
-// ))}
             // <NavLink to={`/reviews/places/${place.id}`}>
             // <button>Review</button>
             // </NavLink>

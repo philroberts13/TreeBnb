@@ -10,6 +10,7 @@ import CreatePlaceForm from "./components/CreatePlaceForm";
 import PlaceDetailPage from "./components/PlaceDetailPage";
 import EditPlacePage from "./components/EditPlaceForm";
 import ReviewsPage from './components/ReviewsPage';
+import ReviewsTestPage from "./components/ReviewsTestPage";
 
 
 function App() {
@@ -42,8 +43,11 @@ function App() {
           <Route exact path='/places/edit/:placeId'>
             <EditPlacePage />
           </Route>
-          <Route exact path='/reviews'>
+          <Route exact path='/reviews/:placeId'>
             <ReviewsPage />
+          </Route>
+          <Route exact path='/reviews'>
+            <ReviewsTestPage />
           </Route>
         </Switch>
       )}
