@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import ReactDOM from 'react-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getPlaceById, deletePlace } from "../../store/places";
@@ -24,6 +27,8 @@ function PlaceDetailPage() {
         dispatch(getReivewsOfPlace(placeId))
     }, [dispatch, placeId]);
 
+    console.log(reviews)
+
     const removePlace = async (e) => {
         await dispatch(deletePlace(placeId));
 
@@ -42,7 +47,7 @@ function PlaceDetailPage() {
 
     let reviewList = Object.values(reviews)?.map(review => (
         <li key={review.id}>
-        {review.review_body}
+        {review.review_body}<button>  <FontAwesomeIcon icon={faPen} /> </button>
         </li>))
 
     return (

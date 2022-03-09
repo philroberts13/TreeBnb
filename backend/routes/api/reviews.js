@@ -15,7 +15,7 @@ router.get('/:placeId', asyncHandler(async function (req, res) {
 }));
 
 router.post('/:placeId', asyncHandler(async function (req, res) {
-    const review = await Review.create(req.params.placeId);
+    const review = await Review.create(req.body);
     return res.json(review);
 }));
 
