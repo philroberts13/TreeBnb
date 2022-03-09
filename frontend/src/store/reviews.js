@@ -5,6 +5,7 @@ const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE_REVIEW'
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
+const REMOVE_REVIEW = 'reviews/DELETE_REVIEW'
 
 export const loadReviews = (reviews) => {
     return {
@@ -29,11 +30,16 @@ export const addReview = (review) => ({
 export const loadOneReview = (review) => ({
     type: LOAD_ONE_REVIEW,
     review
-})
+});
 
 export const updateReview = (review) => ({
     type: UPDATE_REVIEW,
     review
+});
+
+export const removeReview = (reviewId) => ({
+    type: REMOVE_REVIEW,
+    reviewId
 })
 
 // export const getReviews = () => async dispatch => {
@@ -91,6 +97,18 @@ export const editReview = (review) => async (dispatch) => {
     return response;
 }
 
+export const deleteReview = (reviewId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/edit/${reviewId}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
+    })
+    if (response.ok) {
+        const deletedReview = await response.json();
+        await dispatch(removeReview(reviewId))
+        return deletedReview
+    }
+};
+
 const initialState = {}
 
 
@@ -98,6 +116,7 @@ const reviewsReducer = (state = initialState, action) => {
     let newState;
 
     switch(action.type) {
+
         case LOAD_REVIEWS_PLACE:
             let placeReviews = {};
             action.reviews.forEach(review => {
@@ -107,25 +126,35 @@ const reviewsReducer = (state = initialState, action) => {
                 ...state,
                 ...placeReviews
             }
+
         case LOAD_REVIEWS:
                 let reviews = {};
                 action.reviews.forEach(review => {
                     reviews[review.id] = review;
                 });
                 return {
-                    ...state,
-                    ...reviews
+                ...state,
+                ...reviews
                 }
+
         case ADD_REVIEW:
                 newState = {
-                    ...state,
-                    [action.review.id]: action.review
+                ...state,
+                [action.review.id]: action.review
                 }
                 return newState;
+
         case LOAD_ONE_REVIEW:
             newState = {...state}
             newState[action.review.id] = action.review;
             return newState;
+
+        case REMOVE_REVIEW:{
+            let newState = {...state};
+            delete newState[action.placeId];
+            return newState;
+            }
+
 
         default: return state;
         }

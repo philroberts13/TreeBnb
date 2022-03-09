@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
+import ReactDOM from 'react-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux"
-import {editReview, getOneReview} from '../../store/reviews';
+import {editReview, getOneReview, deleteReview} from '../../store/reviews';
+
 
 function ReviewsEditPage() {
     const dispatch = useDispatch();
@@ -32,8 +36,14 @@ function ReviewsEditPage() {
     let placeId = review.placeId
     history.push(`/places/${placeId}`)
 
-      };
+    };
 
+    let placeId = review.placeId
+
+    const removeReview = async (e) => {
+        await dispatch(deleteReview(placeId));
+
+    }
 
     return (
     <div>
@@ -49,8 +59,10 @@ function ReviewsEditPage() {
       </label>
       <button type="submit">Add</button>
       </form>
-      <h2>No thoughts?</h2>
-      <button></button>
+      <p>No thoughts?</p>
+      <button onClick={removeReview}>
+          <NavLink style={{textDecoration: 'none'}} to={`/places/${placeId}`}><FontAwesomeIcon icon={faTrashCan} /></NavLink>
+      </button>
     </div>
     )
 }

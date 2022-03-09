@@ -43,6 +43,10 @@ router.put('/edit/:id',asyncHandler(async function (req, res) {
     asyncHandler(async (req, res) => {
         const { id } = req.params;
         const place = await Place.findByPk(id);
+        const reviews = await Review.findAll({where: {placeId: place.id}})
+
+        const reviewsArr = [...reviews]
+        await reviewsArr.forEach(review => review.destroy());
         await place.destroy();
         return res.json({ message: 'success' });
     })
