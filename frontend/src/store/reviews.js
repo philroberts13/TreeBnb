@@ -3,6 +3,8 @@ import { csrfFetch } from './csrf';
 const LOAD_REVIEWS_PLACE = 'reviews/LOAD_REVIEWS_PLACE'
 const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEW'
+const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE_REVIEW'
+const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
 
 export const loadReviews = (reviews) => {
     return {
@@ -21,6 +23,16 @@ export const loadAllReviews = (reviews) => {
 
 export const addReview = (review) => ({
     type: ADD_REVIEW,
+    review
+});
+
+export const loadOneReview = (review) => ({
+    type: LOAD_ONE_REVIEW,
+    review
+})
+
+export const updateReview = (review) => ({
+    type: UPDATE_REVIEW,
     review
 })
 
@@ -55,6 +67,30 @@ export const getReivewsOfPlace = (placeId) => async (dispatch, getState) => {
     }
 }
 
+export const getOneReview = (reviewId) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/edit/${reviewId}`);
+    if(response.ok) {
+        let review = await response.json();
+
+        dispatch(loadOneReview(review));
+    }
+    return response;
+}
+
+export const editReview = (review) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/edit/${review.id}`, {
+        method: "PUT",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(review)
+    })
+    if(response.ok) {
+        const updatedReview = await response.json()
+        dispatch(updateReview(updatedReview))
+        return updatedReview;
+    }
+    return response;
+}
+
 const initialState = {}
 
 
@@ -81,11 +117,15 @@ const reviewsReducer = (state = initialState, action) => {
                     ...reviews
                 }
         case ADD_REVIEW:
-                const newState = {
+                newState = {
                     ...state,
                     [action.review.id]: action.review
                 }
                 return newState;
+        case LOAD_ONE_REVIEW:
+            newState = {...state}
+            newState[action.review.id] = action.review;
+            return newState;
 
         default: return state;
         }

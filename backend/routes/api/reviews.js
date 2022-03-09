@@ -19,5 +19,28 @@ router.post('/:placeId', asyncHandler(async function (req, res) {
     return res.json(review);
 }));
 
+router.get('/edit/:id', asyncHandler(async function (req, res) {
+    const review = await Review.findByPk(req.params.id)
+    return res.json(review)
+}));
+
+router.put('/edit/:id',asyncHandler(async function (req, res) {
+    const { review_body } = req.body;
+    await Review.update({review_body}, {where: {id: req.params.id} })
+    const review = await Review.findByPk(req.params.id)
+    return res.json(review);
+    })
+);
+
+
+//   router.delete('/edit/:id',
+//     asyncHandler(async (req, res) => {
+//         const { id } = req.params;
+//         const place = await Place.findByPk(id);
+//         await place.destroy();
+//         return res.json({ message: 'success' });
+//     })
+// );
+
 
 module.exports = router;
