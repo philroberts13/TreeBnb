@@ -7,9 +7,7 @@ const { Review } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async function(req, res) {
-    const places = await Place.findAll({
-      include: Review,
-    });
+    const places = await Place.findAll();
     return res.json(places);
   }));
 

@@ -1,7 +1,6 @@
 import { csrfFetch } from './csrf';
 
 const LOAD_REVIEWS_PLACE = 'reviews/LOAD_REVIEWS_PLACE'
-const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEW'
 const LOAD_ONE_REVIEW = 'reviews/LOAD_ONE_REVIEW'
 const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
@@ -11,14 +10,6 @@ export const loadReviews = (reviews) => {
     return {
         type: LOAD_REVIEWS_PLACE,
         reviews
-    }
-};
-
-export const loadAllReviews = (reviews) => {
-    return {
-        type: LOAD_REVIEWS,
-        reviews,
-
     }
 };
 
@@ -118,24 +109,12 @@ const reviewsReducer = (state = initialState, action) => {
     switch(action.type) {
 
         case LOAD_REVIEWS_PLACE:
+            newState = {...state}
             let placeReviews = {};
             action.reviews.forEach(review => {
                 placeReviews[review.id] = review;
             });
-            return {
-                ...state,
-                ...placeReviews
-            }
-
-        case LOAD_REVIEWS:
-                let reviews = {};
-                action.reviews.forEach(review => {
-                    reviews[review.id] = review;
-                });
-                return {
-                ...state,
-                ...reviews
-                }
+            return placeReviews;
 
         case ADD_REVIEW:
                 newState = {
