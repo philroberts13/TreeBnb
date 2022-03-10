@@ -27,8 +27,6 @@ function PlaceDetailPage() {
         dispatch(getReivewsOfPlace(placeId))
     }, [dispatch, placeId]);
 
-    console.log(reviews)
-
     const removePlace = async (e) => {
         await dispatch(deletePlace(placeId));
 

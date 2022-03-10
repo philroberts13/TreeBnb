@@ -41,7 +41,7 @@ function ReviewsEditPage() {
     let placeId = review.placeId
 
     const removeReview = async (e) => {
-        await dispatch(deleteReview(placeId));
+        await dispatch(deleteReview(reviewId));
 
     }
 
