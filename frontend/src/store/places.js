@@ -123,7 +123,6 @@ const placesReducer = (state = initialState, action) => {
             }
         case LOAD_PLACE:
             newState = {...state}
-            //newState.action.place = action.place
             newState[action.place.id] = action.place;
             return newState;
 

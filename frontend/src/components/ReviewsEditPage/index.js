@@ -14,6 +14,7 @@ function ReviewsEditPage() {
     const {reviewId} = useParams();
     const review = useSelector(state => state.reviews[reviewId])
     const [review_body, setReview] = useState(review.review_body);
+    const sessionUser = useSelector(state => state.session.user);
 
     const updateReview = (e) => setReview(e.target.value)
 
@@ -44,6 +45,12 @@ function ReviewsEditPage() {
         await dispatch(deleteReview(reviewId));
 
     }
+
+
+        if(sessionUser.id !== review.userId){
+        window.alert("No changing whats not yours man")
+        history.push(`/places/${placeId}`)
+        }
 
     return (
     <div>

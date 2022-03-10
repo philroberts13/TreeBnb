@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
 
   return (
     <ul>
-      <li className='leftSide'>
+      <li className='rightSide'>
         <button><NavLink style={{textDecoration: 'none'}} exact to="/">Home</NavLink></button>
         {isLoaded && sessionLinks}
         <button><NavLink style={{textDecoration: 'none'}} to='/places'>Tree Houses</NavLink></button>

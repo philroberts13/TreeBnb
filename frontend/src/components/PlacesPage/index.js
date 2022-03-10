@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getPlaceList } from "../../store/places";
 // import { getReviews } from "../../store/reviews";
+import './Places.css'
 
 
 function PlacesPage() {
@@ -21,18 +22,25 @@ function PlacesPage() {
 
 
   let placeCards = places?.map(place => (
-                <ul key={place.id}>
-                <NavLink className={'link'} key={place.id} to={`/places/${place.id}`}>
-                <img key={place.id} src={place.imageUrl} className="image" alt=""/> {place.name}
+      <>
+                <NavLink key={place.id} to={`/places/${place.id}`}>
+                <div className={'imageCard'}key={place.id} style={{backgroundImage: `url(${place.imageUrl})`}}>
+                {/* <img key={place.id} src={place.imageUrl} alt=""/> */}
+                <div className="infoCard">
+                    {place.city},{place.state}
+                </div>
+                </div>
                 </NavLink>
-                </ul>))
+
+    </>
+                ));
 
     return (
         <div>
-            <h1>Tree Houses</h1>
-            <ul>
+            <h1>tree houses</h1>
+            <div className="cardsContainer">
                 {placeCards}
-            </ul>
+            </div>
         </div>
     )
 }

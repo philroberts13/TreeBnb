@@ -43,11 +43,15 @@ function PlaceDetailPage() {
       );
     }
 
-    let reviewList = Object.values(reviews)?.map(review => (
+
+
+       let reviewList = Object.values(reviews)?.map(review => (
         <li key={review.id}>
 
-        {review.review_body} <button><NavLink style={{textDecoration: 'none'}} to={`/reviews/edit/${review.id}`}><FontAwesomeIcon icon={faPen} /></NavLink></button>
-        </li>))
+        {review.review_body}
+        {<button ><NavLink style={{textDecoration: 'none'}} to={`/reviews/edit/${review.id}`}><FontAwesomeIcon icon={faPen} /></NavLink></button>}
+        </li>
+        ))
 
     return (
         <div>
