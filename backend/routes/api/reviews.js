@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Review } = require('../../db/models');
+const validateReview = require ('../validations/reviews')
 const router = express.Router();
 
 router.get('/:placeId', asyncHandler(async function (req, res) {
@@ -14,12 +15,12 @@ router.get('/:placeId', asyncHandler(async function (req, res) {
     return res.json(reviews)
 }));
 
-router.post('/:placeId', asyncHandler(async function (req, res) {
+router.post('/:placeId', validateReview, asyncHandler(async function (req, res) {
     const review = await Review.create(req.body);
     return res.json(review);
 }));
 
-router.get('/edit/:id', asyncHandler(async function (req, res) {
+router.get('/edit/:id', validateReview, asyncHandler(async function (req, res) {
     const review = await Review.findByPk(req.params.id)
     return res.json(review)
 }));

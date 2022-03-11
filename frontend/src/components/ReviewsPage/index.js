@@ -14,6 +14,7 @@ function ReviewsPage() {
     const userId = user.id
 
     const [review_body, setReview] = useState("");
+    const [errors, setErrors] = useState(['nada'])
 
 
     const handleSubmit = async (e) => {
@@ -27,17 +28,30 @@ function ReviewsPage() {
         };
 
 
-    dispatch(createReview(newReview));
+   const createdReview = dispatch(createReview(newReview))
+    .catch(async (response) => {
+      const data = await response.json();
+      if (data && data.errors) {
+        if (data.errors)
+        setErrors(data.errors);
+      }});
 
-
-    history.push(`/places/${placeId}`)
-
-    // await dispatch(getPlaceList(user?.id))
+    if (newReview.review_body) {
+      console.log(newReview)
+      history.push(`/places/${placeId}`)
+    }
 
       };
 
     return (
     <div>
+      {errors && !(errors[0] === 'nada') && (
+          <ul>
+          {errors?.map((error) => (
+            <li>{error}</li>
+          ))}
+          </ul>
+        )}
         <form className="createForm" onSubmit={handleSubmit}>
         <label>
         What did you think?
@@ -45,7 +59,6 @@ function ReviewsPage() {
           type="text"
           value={review_body}
           onChange={(e) => setReview(e.target.value)}
-          required
         />
       </label>
       <button type="submit">Add</button>

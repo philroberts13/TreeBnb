@@ -55,11 +55,9 @@ function PlaceDetailPage() {
         <li key={review.id}>
 
         {review.review_body}
-        {console.log(review.userId, "review")}
         {(sessionUser.id === review.userId)&& <button ><NavLink style={{textDecoration: 'none'}} to={`/reviews/edit/${review.id}`}><FontAwesomeIcon icon={faPen} /></NavLink></button>}
         </li>
         ))
-        console.log(sessionUser.id, "session")
     return (
         <div >
             <h1 className="name">{place?.name}</h1>

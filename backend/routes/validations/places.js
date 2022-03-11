@@ -4,7 +4,7 @@ const { handleValidationErrors } = require('../../utils/validation.js');
 const validatePlace = [
     check('name')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a name'),
+        .withMessage('Please provide a descriptive title'),
     check('address')
         .exists({ checkFalsy: true })
         .withMessage('Please provide an address'),
