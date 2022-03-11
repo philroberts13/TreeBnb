@@ -1,11 +1,76 @@
 .signupform {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    z-index: 2;
     padding-left: 1.25vw;
     justify-content: center;
     align-items: space-between;
-    width: 13.5vw;
-    height: 50vh;
+    width: 14.8vw;
+    height: 35vh;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    margin-left: 41%;
+    margin-top: 5%;
+    border-radius: 20px;
+    opacity: 0.9;
+}
 
+.signupHeader {
+    margin-left: 15px;
+}
+
+.treehouseContainer {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    /* margin-left: 100px; */
+}
+
+.treehouseA {
+    border-radius: 5px;
+    transform: rotateY(-20deg);
+    z-index: -1;
+    width: 400px;
+    height: 500px;
+    background-image: url("https://images.unsplash.com/photo-1609784241707-1a0f39fdaccc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODB8fHRyZWUlMjBob3VzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60");
+    background-size:400px 500px;
+    background-repeat: no-repeat;
+
+}
+
+.treehouseB {
+    border-radius: 5px;
+    transform: rotateY(-20deg);
+    z-index: -1;
+    width: 400px;
+    height: 500px;
+    background-image: url("https://images.unsplash.com/photo-1578010896624-fa4dd2c708b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDh8fHRyZWUlMjBob3VzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60");
+    background-size:400px 500px;
+    background-repeat: no-repeat;
+
+}
+
+.treehouseC {
+    border-radius: 5px;
+    transform: rotateY(-20deg);
+    z-index: -1;
+    width: 400px;
+    height: 500px;
+    background-image: url("https://images.unsplash.com/photo-1599190925362-d0ea4c8a06c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fHRyZWUlMjBob3VzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60");
+    background-size: 400px 500px;
+    background-repeat: no-repeat;
+
+}
+
+.signButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-right: 12%;
 }

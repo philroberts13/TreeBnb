@@ -48,7 +48,7 @@ function ReviewsEditPage() {
 
 
         if(sessionUser.id !== review.userId){
-        window.alert("No changing whats not yours man")
+        window.alert("No changing whats not yours")
         history.push(`/places/${placeId}`)
         }
 

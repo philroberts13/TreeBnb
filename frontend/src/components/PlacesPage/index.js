@@ -37,7 +37,7 @@ function PlacesPage() {
 
     return (
         <div>
-            <h1>tree houses</h1>
+            <h1 className="header">tree houses</h1>
             <div className="cardsContainer">
                 {placeCards}
             </div>

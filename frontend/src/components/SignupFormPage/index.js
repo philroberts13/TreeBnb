@@ -30,6 +30,8 @@ function SignupFormPage() {
   };
 
   return (
+    <div>
+      <h1 className="signupHeader">get in a tree</h1>
     <form className="signupform" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -70,8 +72,17 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className="signButton" type="submit">Sign Up</button>
     </form>
+    <div className="treehouseContainer">
+    <div className="treehouseA">
+    </div>
+    <div className="treehouseC">
+    </div>
+    <div className="treehouseB">
+    </div>
+    </div>
+    </div>
   );
 }
 

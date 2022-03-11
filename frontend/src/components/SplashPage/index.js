@@ -8,7 +8,7 @@ function SplashPage() {
         <div >
 
         <div>
-        <h1 className="header">treebnb</h1>
+        <h1 className="header1">treebnb</h1>
         </div>
 
         <div className="treehouseContainer">
