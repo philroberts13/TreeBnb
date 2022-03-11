@@ -1,10 +1,32 @@
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
 .editForm {
     display: flex;
     flex-direction: column;
     padding-left: 1.25vw;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: space-between;
     width: 13.5vw;
     height: 50vh;
     font-family: Arial, Helvetica, sans-serif;
+    padding: 40px;
+    margin-right: 50px;
+
+}
+.background {
+    display: flex;
+    justify-content: flex-end;
+    height: 700px;
+    width: 700px;
+    background-image: url("https://images.unsplash.com/photo-1618435384224-e4661e43a8b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHRyZWUlMjBob3VzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60");
+    background-repeat: no-repeat;
+}
+
+.editHeader {
+    margin-left: 10%;
 }

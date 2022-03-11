@@ -51,9 +51,9 @@ function EditPlacePage() {
 
     return (
 
-    <div>
-        <h1>
-            Hello!
+    <div className="container">
+        <h1 className="editHeader">
+            adding a hot tub?
         </h1>
     <form className='editForm' onSubmit={handleSubmit}>
          <label>
@@ -112,6 +112,7 @@ function EditPlacePage() {
       </label>
       <button type="submit">Update</button>
       </form>
+      <div className="background"></div>
     </div>
     )
 }

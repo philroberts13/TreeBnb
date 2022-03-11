@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPlace, getPlaceList } from "../../store/places";
@@ -18,38 +18,56 @@ function CreatePlaceForm() {
     const [country, setCountry] = useState("");
     const [price, setPrice] = useState();
     const [imageUrl, setImageUrl] = useState("");
+    const [errors, setErrors] = useState(['nada'])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+
         const newPlace = {
-            userId,
-            name,
-            address,
-            city,
-            state,
-            country,
-            price,
-            imageUrl,
+          userId,
+          name,
+          address,
+          city,
+          state,
+          country,
+          price,
+          imageUrl,
         };
 
 
-    let createdPlace = dispatch(createPlace(newPlace));
+        let createdPlace = await dispatch(createPlace(newPlace))
+        .catch(async (response) => {
+          const data = await response.json();
+          if (data && data.errors) {
+            if (data.errors)
+            setErrors(data.errors);
+          }});
 
 
-    history.push(`/places`)
+        if(createPlace) {
+          history.push(`/places`)
+
+        }
 
     await dispatch(getPlaceList(user?.id))
 
       };
-      if (!user || !user.id) return null;
+      if (!user || !user.id) history.push('/');
 
     return (
     <div className="container">
-        <h1>
+        <h1 className="createHeader">
             build a tree house
         </h1>
+        {errors && !(errors[0] === 'nada') && (
+          <ul>
+          {errors?.map((error) => (
+            <li>{error}</li>
+          ))}
+          </ul>
+        )}
         <form className="createForm" onSubmit={handleSubmit}>
         <label>
         Title
@@ -58,6 +76,7 @@ function CreatePlaceForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+
         />
       </label>
       <label>
@@ -66,7 +85,7 @@ function CreatePlaceForm() {
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          required
+
         />
       </label>
       <label>
@@ -75,7 +94,7 @@ function CreatePlaceForm() {
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          required
+
         />
       </label>
       <label>
@@ -84,7 +103,7 @@ function CreatePlaceForm() {
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
-          required
+
         />
       </label>
       <label>
@@ -93,7 +112,7 @@ function CreatePlaceForm() {
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          required
+
         />
       </label>
       <label>
@@ -103,7 +122,7 @@ function CreatePlaceForm() {
           placeholder="per night in dollars"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          required
+
         />
       </label>
       <label>
@@ -113,7 +132,7 @@ function CreatePlaceForm() {
           placeholder="image url link here"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-          required
+
         />
       </label>
       <button type="submit">Create</button>
