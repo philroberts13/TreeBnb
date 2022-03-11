@@ -21,8 +21,10 @@ To get started finding tree houses:
    keeping the 5000 port to match your PORT configuration found in your .env file.
   * "proxy": "http://localhost:5000"
   
-7. Create database, migrate, and seed models with script:
-  * npm run db:setup
+7. Create database, migrate, and seed models:
+  * npx dotenv sequelize db:create
+  * npx dotenv sequelize db:migrate
+  * npx dotenv sequelize db:seed:all
   
 8. Start backend server
   * npm start
@@ -30,4 +32,4 @@ To get started finding tree houses:
 9. Start frontend services, which should open hte app in your default browser, if not navigate to http://localhost:3000/
   * npm start
   
-10. A demo user button is available to use or you may create a new user accoutn by clicking on "Sign up" in the nav bar. 
+10. A demo user button is available to use or you may create a new user account by clicking on "Sign up" in the nav bar. 
