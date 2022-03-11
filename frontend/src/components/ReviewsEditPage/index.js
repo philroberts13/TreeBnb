@@ -46,12 +46,6 @@ function ReviewsEditPage() {
 
     }
 
-
-        if(sessionUser.id !== review.userId){
-        window.alert("No changing whats not yours")
-        history.push(`/places/${placeId}`)
-        }
-
     return (
     <div>
         <form className="createForm" onSubmit={handleSubmit}>
