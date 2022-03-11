@@ -46,7 +46,7 @@ function CreatePlaceForm() {
           }});
 
 
-        if(createPlace) {
+        if(createdPlace) {
           history.push(`/places`)
 
         }

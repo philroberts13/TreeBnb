@@ -18,6 +18,7 @@ function EditPlacePage() {
     const [state, setState] = useState(place.state);
     const [country, setCountry] = useState(place.country);
     const [price, setPrice] = useState(place.price);
+    const [errors, setErrors] = useState(['nada'])
 
     const updateName = (e) => setName(e.target.value);
     const updateAddress = (e) => setAddress(e.target.value);
@@ -25,6 +26,7 @@ function EditPlacePage() {
     const updateState = (e) => setState(e.target.value);
     const updateCountry = (e) => setCountry(e.target.value);
     const updatePrice = (e) => setPrice(e.target.value);
+
 
 
     const handleSubmit = async (e) => {
@@ -40,11 +42,17 @@ function EditPlacePage() {
             price,
         };
 
-        let updatedPlace = await dispatch(editPlace(newUpdatedPlace));
+        let updatedPlace = await dispatch(editPlace(newUpdatedPlace))
+        .catch(async (response) => {
+          const data = await response.json();
+          if (data && data.errors) {
+            if (data.errors)
+            setErrors(data.errors);
+          }});
 
-        history.push("/places")
-        if (!updatedPlace.id) {
-            return null;
+
+        if (updatedPlace.id) {
+          history.push("/places")
           }
 
       };
@@ -55,6 +63,13 @@ function EditPlacePage() {
         <h1 className="editHeader">
             adding a hot tub?
         </h1>
+        {errors && !(errors[0] === 'nada') && (
+          <ul>
+          {errors?.map((error) => (
+            <li>{error}</li>
+          ))}
+          </ul>
+        )}
     <form className='editForm' onSubmit={handleSubmit}>
          <label>
          Title
@@ -62,7 +77,7 @@ function EditPlacePage() {
           type="text"
           value={name}
           onChange={updateName}
-          required
+
         />
       </label>
       <label>
@@ -71,7 +86,7 @@ function EditPlacePage() {
           type="text"
           value={address}
           onChange={updateAddress}
-          required
+
         />
       </label>
       <label>
@@ -80,7 +95,7 @@ function EditPlacePage() {
           type="text"
           value={city}
           onChange={updateCity}
-          required
+
         />
       </label>
       <label>
@@ -89,7 +104,7 @@ function EditPlacePage() {
           type="text"
           value={state}
           onChange={updateState}
-          required
+
         />
       </label>
       <label>
@@ -98,7 +113,7 @@ function EditPlacePage() {
           type="text"
           value={country}
           onChange={updateCountry}
-          required
+
         />
       </label>
       <label>
@@ -107,7 +122,7 @@ function EditPlacePage() {
           type="text"
           value={price}
           onChange={updatePrice}
-          required
+
         />
       </label>
       <button type="submit">Update</button>
