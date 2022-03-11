@@ -57,10 +57,13 @@ function CreatePlaceForm() {
       if (!user || !user.id) history.push('/');
 
     return (
-    <div className="container">
+      <div>
         <h1 className="createHeader">
             build a tree house
         </h1>
+    <div className="container">
+        <div className="constructing"></div>
+        <div className="errors">
         {errors && !(errors[0] === 'nada') && (
           <ul>
           {errors?.map((error) => (
@@ -68,6 +71,7 @@ function CreatePlaceForm() {
           ))}
           </ul>
         )}
+        </div>
         <form className="createForm" onSubmit={handleSubmit}>
         <label>
         Title
@@ -134,11 +138,10 @@ function CreatePlaceForm() {
 
         />
       </label>
-      <button type="submit">Create</button>
+      <button className="createButton" type="submit">Create</button>
       </form>
 
-      <div className="background">
-      </div>
+    </div>
     </div>
     )
 }

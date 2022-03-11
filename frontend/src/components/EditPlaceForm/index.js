@@ -42,7 +42,7 @@ function EditPlacePage() {
             price,
         };
 
-        let updatedPlace = await dispatch(editPlace(newUpdatedPlace))
+        const updatedPlace = await dispatch(editPlace(newUpdatedPlace))
         .catch(async (response) => {
           const data = await response.json();
           if (data && data.errors) {
@@ -51,7 +51,7 @@ function EditPlacePage() {
           }});
 
 
-        if (updatedPlace.id) {
+        if (updatedPlace) {
           history.push("/places")
           }
 
@@ -59,10 +59,12 @@ function EditPlacePage() {
 
     return (
 
-    <div className="container">
+    <div >
         <h1 className="editHeader">
             adding a hot tub?
         </h1>
+        <div className="container">
+          <div className="errors">
         {errors && !(errors[0] === 'nada') && (
           <ul>
           {errors?.map((error) => (
@@ -70,6 +72,7 @@ function EditPlacePage() {
           ))}
           </ul>
         )}
+        </div>
     <form className='editForm' onSubmit={handleSubmit}>
          <label>
          Title
@@ -128,6 +131,7 @@ function EditPlacePage() {
       <button type="submit">Update</button>
       </form>
       <div className="background"></div>
+    </div>
     </div>
     )
 }

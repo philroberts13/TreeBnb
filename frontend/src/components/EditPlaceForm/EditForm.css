@@ -1,32 +1,50 @@
 
 .container {
-    display: flex;
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 8;
 }
 
 .editForm {
     display: flex;
     flex-direction: column;
-    padding-left: 1.25vw;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: space-between;
-    width: 13.5vw;
-    height: 50vh;
+    position: absolute;
+    z-index: 9;
+    align-items: space-between;
+    width: 14.8vw;
+    height: 48vh;
+    margin-top: 3%;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 40px;
-    margin-right: 50px;
+    background-color: white;
+    padding: 10px;
+    padding-left: 15px;
+    border-radius: 20px;
+    opacity: .9;
 
 }
 .background {
     display: flex;
     justify-content: flex-end;
-    height: 700px;
-    width: 700px;
+    height: 550px;
+    width: 600px;
     background-image: url("https://images.unsplash.com/photo-1618435384224-e4661e43a8b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHRyZWUlMjBob3VzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60");
+    background-size: 600px, 550px;
     background-repeat: no-repeat;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .editHeader {
     margin-left: 10%;
+}
+
+.errors {
+    color: red;
+    font-weight: bold;
+    margin-top: 60px;
 }
