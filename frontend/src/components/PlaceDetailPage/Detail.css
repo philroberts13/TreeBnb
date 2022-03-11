@@ -1,0 +1,25 @@
+.placeCard {
+    display: flex;
+    /* justify-content: center; */
+}
+
+.image {
+    display: flex;
+    justify-content: flex-start;
+    height: 400px;
+    width: 800px;
+    padding: 45px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: rgb(158, 157, 157);
+}
+
+
+/* .header {
+
+} */

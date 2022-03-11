@@ -24,6 +24,7 @@
 } */
 .header {
     color: black;
+    margin-left: 10px;
 }
 .treehouseContainer {
     width: 100%;

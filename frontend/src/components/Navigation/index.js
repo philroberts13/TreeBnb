@@ -14,6 +14,7 @@ function Navigation({ isLoaded }){
       <>
       <ProfileButton user={sessionUser} />
       <button><NavLink style={{textDecoration: 'none'}} to={'/places/form'}>Create Listing</NavLink></button>
+      <button><NavLink style={{textDecoration: 'none'}} to='/places'>Tree Houses</NavLink></button>
       </>
     );
   } else {
@@ -30,7 +31,6 @@ function Navigation({ isLoaded }){
       <li className='rightSide'>
         <button><NavLink style={{textDecoration: 'none'}} exact to="/">Home</NavLink></button>
         {isLoaded && sessionLinks}
-        <button><NavLink style={{textDecoration: 'none'}} to='/places'>Tree Houses</NavLink></button>
       </li>
     </ul>
   );

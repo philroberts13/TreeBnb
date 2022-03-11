@@ -16,7 +16,7 @@ function CreatePlaceForm() {
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [country, setCountry] = useState("");
-    const [price, setPrice] = useState(0.00);
+    const [price, setPrice] = useState();
     const [imageUrl, setImageUrl] = useState("");
 
 
@@ -46,9 +46,9 @@ function CreatePlaceForm() {
       if (!user || !user.id) return null;
 
     return (
-    <div>
+    <div className="container">
         <h1>
-            Hello!
+            build a tree house
         </h1>
         <form className="createForm" onSubmit={handleSubmit}>
         <label>
@@ -100,6 +100,7 @@ function CreatePlaceForm() {
         Price
         <input
           type="text"
+          placeholder="per night in dollars"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
           required
@@ -109,7 +110,7 @@ function CreatePlaceForm() {
         Image URL
         <input
           type="text"
-          placeholder="url link hur"
+          placeholder="image url link here"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           required
@@ -117,6 +118,9 @@ function CreatePlaceForm() {
       </label>
       <button type="submit">Create</button>
       </form>
+
+      <div className="background">
+      </div>
     </div>
     )
 }

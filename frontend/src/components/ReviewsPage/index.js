@@ -35,7 +35,6 @@ function ReviewsPage() {
     // await dispatch(getPlaceList(user?.id))
 
       };
-      if (!user || !user.id) return null;
 
     return (
     <div>

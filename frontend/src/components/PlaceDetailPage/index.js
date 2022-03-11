@@ -43,6 +43,12 @@ function PlaceDetailPage() {
       );
     }
 
+    let userLink;
+    if (sessionUser.id) {
+        userLink = (
+        <h2>Reviews<button><NavLink style={{textDecoration: 'none'}} to={`/reviews/${placeId}`}>+</NavLink></button></h2>
+        )
+    }
 
 
        let reviewList = Object.values(reviews)?.map(review => (
@@ -54,16 +60,22 @@ function PlaceDetailPage() {
         ))
 
     return (
-        <div>
-            <h1>{place?.name}</h1>
-            <img className="image" src={place?.imageUrl} alt="" />
+        <div >
+            <h1 className="name">{place?.name}</h1>
+            <div className="placeCard">
+            <div className="image">
+            <img src={place?.imageUrl} alt="" />
+            </div>
+            <div className="details">
             <ul>{place?.address}</ul>
             <ul>
             {place?.city}, {place?.state}
             </ul>
             <ul>Per Night:  ${place?.price}</ul>
+            </div>
+            </div>
             {hostLinks}
-            <h2>Reviews<button><NavLink style={{textDecoration: 'none'}} to={`/reviews/${placeId}`}>+</NavLink></button></h2>
+            {userLink}
             {reviewList}
 
 
