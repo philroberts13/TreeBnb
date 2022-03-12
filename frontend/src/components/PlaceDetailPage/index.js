@@ -66,9 +66,9 @@ function PlaceDetailPage() {
             <img src={place?.imageUrl} alt="" />
             </div>
             <div className="details">
-            <ul>{place?.address}</ul>
+            <ul>Address:    {place?.address}</ul>
             <ul>
-            {place?.city}, {place?.state}
+            City:   {place?.city}, State:   {place?.state}
             </ul>
             <ul>Per Night:  ${place?.price}</ul>
             </div>

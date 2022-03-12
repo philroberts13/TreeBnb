@@ -42,13 +42,14 @@ function ReviewsEditPage() {
     let placeId = review.placeId
 
     const removeReview = async (e) => {
-        await dispatch(deleteReview(reviewId));
+        await dispatch(deleteReview(reviewId))
 
     }
 
     return (
+        <>
     <div>
-        <form className="createForm" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
         <label>
         Second thoughts?
         <input
@@ -60,11 +61,15 @@ function ReviewsEditPage() {
       </label>
       <button type="submit">Add</button>
       </form>
+    </div>
       <p>No thoughts?</p>
       <button onClick={removeReview}>
           <NavLink style={{textDecoration: 'none'}} to={`/places/${placeId}`}><FontAwesomeIcon icon={faTrashCan} /></NavLink>
       </button>
-    </div>
+
+      </>
     )
 }
 export default ReviewsEditPage;
+{/* <NavLink style={{textDecoration: 'none'}} to={`/places/${placeId}`}><FontAwesomeIcon icon={faTrashCan} /></NavLink> */}
+{/* <FontAwesomeIcon icon={faTrashCan} /> */}

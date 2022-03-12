@@ -20,12 +20,12 @@ router.post('/:placeId', validateReview, asyncHandler(async function (req, res) 
     return res.json(review);
 }));
 
-router.get('/edit/:id', validateReview, asyncHandler(async function (req, res) {
+router.get('/edit/:id', asyncHandler(async function (req, res) {
     const review = await Review.findByPk(req.params.id)
     return res.json(review)
 }));
 
-router.put('/edit/:id',asyncHandler(async function (req, res) {
+router.put('/edit/:id', validateReview, asyncHandler(async function (req, res) {
     const { review_body } = req.body;
     await Review.update({review_body}, {where: {id: req.params.id} })
     const review = await Review.findByPk(req.params.id)
