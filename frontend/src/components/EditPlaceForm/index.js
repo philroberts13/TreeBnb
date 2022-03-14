@@ -128,7 +128,7 @@ function EditPlacePage() {
 
         />
       </label>
-      <button type="submit">Update</button>
+      <button className="editButton" type="submit">Update</button>
       </form>
       <div className="background"></div>
     </div>

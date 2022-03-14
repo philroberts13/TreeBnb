@@ -9,12 +9,6 @@ This is a clone of AirBnb with a focus on houses in trees! Or near/around trees,
 <img src="frontend/public/img/redux.png" width="100">
 </p>
 
-<!-- ![](/frontend/public/img/express.png)
-![](/frontend/public/img/JS.png)
-![](/frontend/public/img/react.png)
-![](/frontend/public/img/redux.png) -->
-
-
 
 # To get started finding tree houses:
 

@@ -60,10 +60,14 @@ function PlaceDetailPage() {
         ))
     return (
         <div >
-            <h1 className="name">{place?.name}</h1>
+            <h1 className="name">{place?.name}
+            </h1>
+            <div className="hostLink">
+            {hostLinks}
+            </div>
             <div className="placeCard">
-            <div className="image">
-            <img src={place?.imageUrl} alt="" />
+            <div style={{backgroundImage: `url(${place.imageUrl})` }} className="image">
+            {/* <img src={place?.imageUrl} alt="" /> */}
             </div>
             <div className="details">
             <ul>Address:    {place?.address}</ul>
@@ -71,11 +75,13 @@ function PlaceDetailPage() {
             City:   {place?.city}, State:   {place?.state}
             </ul>
             <ul>Per Night:  ${place?.price}</ul>
-            </div>
-            </div>
-            {hostLinks}
+            <div className="reviews">
             {userLink}
             {reviewList}
+            </div>
+            </div>
+            </div>
+
 
 
 

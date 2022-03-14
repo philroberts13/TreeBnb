@@ -40,7 +40,14 @@
 }
 
 .editHeader {
-    margin-left: 10%;
+    margin-left: 5%;
+}
+
+.editButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    margin-right: 12%;
 }
 
 .errors {

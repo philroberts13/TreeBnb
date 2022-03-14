@@ -11,6 +11,9 @@ const validatePlace = [
     check('city')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a city'),
+    check('state')
+        .exists({checkFalsy: true})
+        .withMessage('Please provide the state'),
     check('country')
         .exists({ checkFalsy: true })
         .withMessage('Please provide the country'),
