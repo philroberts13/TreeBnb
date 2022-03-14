@@ -2,7 +2,7 @@
 This is a clone of AirBnb with a focus on houses in trees! Or near/around trees, we are not too picky with our tree specifications.
 
 # Technology Used
-<img src"/frontend/public/img/express.png" width="100">
+<img src="frontend/public/img/express.png" width="100">
 ![](/frontend/public/img/express.png)
 
 # To get started finding tree houses:
