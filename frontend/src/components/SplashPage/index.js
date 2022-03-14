@@ -19,7 +19,10 @@ function SplashPage() {
         <div className="treehouse2">
         </div>
         </div>
-
+        <div className="footer">
+            <a href="https://github.com/philroberts13/TreeBnb" target={"blank"}> Github/</a>
+            <a href="https://linkedin.com/in/philip-roberts-2b218416a" target={"blank"}>LinkedIn</a>
+        </div>
         </div>
     )
 }

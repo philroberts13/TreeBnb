@@ -71,3 +71,21 @@
     background-repeat: no-repeat;
 
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color:  darkgrey;
+    text-align:left;
+    padding: 10px;
+
+  }
+
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+    font-family: Arial, Helvetica, sans-serif
+
+}
