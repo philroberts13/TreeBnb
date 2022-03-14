@@ -1,8 +1,21 @@
 .logninform {
     display: flex;
     flex-direction: column;
-    padding-left: 1.25vw;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: space-between;
-    z-index: 4;
+    position: absolute;
+    z-index: 1;
+    right: 200px;
+    bottom: -190px;
+    width: 14.8vw;
+    height: 48vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    padding: 5px;
+    padding-left: 15px;
+    border-radius: 20px;
+}
+
+.loginButtons {
+    padding: 5px;
 }

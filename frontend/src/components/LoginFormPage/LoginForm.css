@@ -1,7 +1,6 @@
-.logninform {
+/* .logninform {
     display: flex;
     flex-direction: column;
-    padding-left: 1.25vw;
-    justify-content: flex-start;
-    align-items: space-between;
-}
+    justify-content: center;
+    /* align-items: space-between;
+    position: absolute; */
