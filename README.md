@@ -13,7 +13,7 @@ This is a clone of AirBnb with a focus on houses in trees! Or near/around trees,
   * npm install
 
 3. Create a POSTGRESQL user with CREATEDB and PASSWORD in PSQL.
-  * CREATE USER <name> WITH CREATEDB PASSWORD <'password'>
+  * CREATE USER <'name'> WITH CREATEDB PASSWORD <'password'>
 
 4. Create a .env file in the backend directory based on the .env.example
 
