@@ -20,6 +20,9 @@ const validatePlace = [
     check('price')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a price per night'),
+    check('imageUrl')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide an image address'),
     handleValidationErrors
 ];
 
